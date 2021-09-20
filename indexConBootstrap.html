@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+  <title>Lector de archivos</title>
+</head>
+
+<body>
+
+  <div class="card text-center">
+    <div class="card-header">
+      <h2 class="fst-italic">LECTOR DE ARCHIVOS C/C++ 2.0</h1>
+    </div>
+    <div class="card-body" style="align-self: center;">
+      <!--input de archivos-->
+      <div class="input-group mb-3">
+        <input type="file" class="form-control" id="archivoTexto">
+        <label class="input-group-text" for="inputGroupFile02">Upload</label>
+
+      </div>
+    </div>
+    <div class="card-footer text-muted">
+
+    </div>
+  </div>
+
+  <!--mostar resultado-->
+  <div class="position-relative">
+    <div class="card text-dark bg-light mb-3 mt-3 position-absolute top-0 start-50" style="max-width: 18rem;">
+      <div class="card-header">Resultado:</div>
+      <div class="card-body">
+        
+      </div>
+    </div>
+  </div>
+  <textarea.value id="contenido"></textarea>
+
+  <script>
+    function abrirArchivo(evento) {
+      let archivo = evento.target.files[0];
+
+      if (archivo) {
+        let reader = new FileReader();
+
+        reader.onload = function (e) {
+          let contenido = e.target.result;
+          //lo que pone la coma a cada palabra
+          let Array = contenido.split(" ");
+          
+          for(var i = 0; i < Array.length - 1; i++)
+         //document.getElementById('contenido').innerHTML = Array[i]; 
+          
+           //console.log(Array[i]);
+           
+          document.write(Array[i]+"<br>");
+          
+        };
+
+        reader.readAsText(archivo, " <br>");
+      } else {
+        document.getElementById('mensajes').innerText = 'No se ha seleccionado un archivo.';
+      }
+    }
+
+    window.addEventListener('load', () => {
+      document.getElementById('archivoTexto').addEventListener('change', abrirArchivo);
+    });
+  </script>
+
+  <!-- Option 1: Bootstrap Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
